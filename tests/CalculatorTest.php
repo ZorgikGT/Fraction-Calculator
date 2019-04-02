@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Tests;
+
 use PHPUnit\Framework\TestCase;
 use App\Calculator\Calculator;
 use App\Calculator\Parser;
@@ -7,7 +9,7 @@ use App\Calculator\Parser;
 class CalculatorTest extends TestCase
 {
     /**
-     * @var Parser
+     * @var Parser $parser
      */
     protected $parser;
 
