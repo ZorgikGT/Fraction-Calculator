@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
+
 class MainController extends AbstractController
 {
     /**
@@ -35,6 +36,13 @@ class MainController extends AbstractController
     {
         $json = $request->getContent();
         $data = json_decode($json, true);
+
+        if(!is_array($data)) {
+            return new JsonResponse(["message:" => "syntax error"], JsonResponse::HTTP_BAD_REQUEST);
+        }
+        if(!isset($data["equation"])) {
+            return new JsonResponse(["message:" => "not exist"], JsonResponse::HTTP_BAD_REQUEST);
+        }
 
         $result = $this->parser->main($data["equation"]);
 

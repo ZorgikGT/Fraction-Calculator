@@ -1,5 +1,7 @@
-
-###> symfony/phpunit-bridge ###
 .phpunit
 /phpunit.xml
-###< symfony/phpunit-bridge ###
+.idea
+/public/bundles/
+/var/*
+/vendor/
+/public/files/*
