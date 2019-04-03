@@ -24,7 +24,7 @@ class MainControllerTest extends WebTestCase
         $client->request('GET', '/healthcheck',[],[],['CONTENT_TYPE' => 'text/plain']);
 
         self::assertEquals(200, $client->getResponse()->getStatusCode());
-        self::assertEquals('txt',  $client->getResponse()->headers->get("content-type"));
+        self::assertEquals('text/plain',  $client->getResponse()->headers->get("content-type"));
         self::assertEquals('status:    UP', $client->getResponse()->getContent());
 
     }
