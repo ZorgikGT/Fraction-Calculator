@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Calculator\Parser;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -24,8 +25,17 @@ class MainController extends AbstractController
     /**
      * @Route("/healthcheck", name="healthCheck", methods={"GET"})
      */
-    public function healthCheck()
+    public function healthCheck(Request $request)
     {
+        $contentType = $request->getContentType();
+        if($contentType == "txt") {
+            return new Response(
+                'Content',
+                Response::HTTP_OK,
+                array('content-type' => 'text/plain')
+            );
+        }
+
         return new JsonResponse(["status" => "UP"], JsonResponse::HTTP_OK);
     }
 
