@@ -1,6 +1,6 @@
 .phpunit
 /phpunit.xml
-.idea
+.idea/
 /public/bundles/
 /var/*
 /vendor/
