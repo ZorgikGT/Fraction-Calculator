@@ -25,7 +25,7 @@ class MainControllerTest extends WebTestCase
 
         self::assertEquals(200, $client->getResponse()->getStatusCode());
         self::assertEquals('text/plain; charset=UTF-8',  $client->getResponse()->headers->get("content-type"));
-        self::assertEquals('status:    UP', $client->getResponse()->getContent());
+        self::assertEquals('status: 	UP', $client->getResponse()->getContent());
 
     }
 
