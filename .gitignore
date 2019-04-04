@@ -1,7 +1,5 @@
+.phpunit.result.cache
+.idea
+vendor/
+var/
 .phpunit
-/phpunit.xml
-.idea/
-/public/bundles/
-/var/*
-/vendor/
-/public/files/*
