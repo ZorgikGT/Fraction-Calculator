@@ -14,4 +14,4 @@ before_install:
 install:
   - docker run -d -p 8080:80 zorgik/provectus-webserver
   - docker run zorgik/provectus-webserver composer install
-  - docker run zorgik/provectus-webserver bin/phpunit
+  - docker run zorgik/provectus-webserver vendor/bin/phpunit
