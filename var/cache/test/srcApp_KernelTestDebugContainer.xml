@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services https://symfony.com/schema/dic/services/services-1.0.xsd">
   <parameters>
     <parameter key="kernel.root_dir">/home/akter/Provectus/src</parameter>
     <parameter key="kernel.project_dir">/home/akter/Provectus</parameter>
@@ -63,6 +63,7 @@
     <service id="App\Calculator\Parser" class="App\Calculator\Parser" autowire="true" autoconfigure="true">
       <argument type="service" id="App\Calculator\Calculator"/>
     </service>
+    <service id="App\Calculator\Validator" class="App\Calculator\Validator" autowire="true" autoconfigure="true"/>
     <service id="App\Controller\MainController" class="App\Controller\MainController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -390,9 +391,11 @@
     <service id="services_resetter" class="Symfony\Component\HttpKernel\DependencyInjection\ServicesResetter" public="true">
       <argument type="iterator">
         <argument key="http_exception_listener" type="service" id="http_exception_listener" on-invalid="ignore_uninitialized"/>
+        <argument key="session" type="service" id="session" on-invalid="ignore_uninitialized"/>
       </argument>
       <argument type="collection">
         <argument key="http_exception_listener">reset</argument>
+        <argument key="session">save</argument>
       </argument>
     </service>
     <service id="fragment.handler" class="Symfony\Component\HttpKernel\DependencyInjection\LazyLoadingFragmentHandler" public="false">
@@ -708,6 +711,7 @@
         <argument key="App\Calculator\Calculator" type="service" id="App\Calculator\Calculator" on-invalid="ignore_uninitialized"/>
         <argument key="App\Calculator\Fraction" type="service" id="App\Calculator\Fraction" on-invalid="ignore_uninitialized"/>
         <argument key="App\Calculator\Parser" type="service" id="App\Calculator\Parser" on-invalid="ignore_uninitialized"/>
+        <argument key="App\Calculator\Validator" type="service" id="App\Calculator\Validator" on-invalid="ignore_uninitialized"/>
         <argument key="Doctrine\Common\Annotations\Reader" type="service" id="annotations.cached_reader" on-invalid="ignore_uninitialized"/>
         <argument key="Psr\Cache\CacheItemPoolInterface" type="service" id="cache.app" on-invalid="ignore_uninitialized"/>
         <argument key="Psr\Container\ContainerInterface" type="service" id="service_container" on-invalid="ignore_uninitialized"/>
@@ -840,6 +844,7 @@
       <argument>/home/akter/Provectus/var/cache/test/sessions</argument>
     </service>
     <service id="session" class="Symfony\Component\HttpFoundation\Session\Session" public="true">
+      <tag name="kernel.reset" method="save"/>
       <argument type="service" id="session.storage.mock_file"/>
       <argument type="service" id="session.attribute_bag"/>
       <argument type="service" id="session.flash_bag"/>

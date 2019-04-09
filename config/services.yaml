@@ -31,3 +31,6 @@ services:
 
     calc.parser:
         class: App\Calculator\Parser
+
+    generator.rng:
+        class: App\Generators\RandomNumberGenerator

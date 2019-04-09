@@ -17,6 +17,7 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
         $this->staticRoutes = [
             '/healthcheck' => [[['_route' => 'healthCheck', '_controller' => 'App\\Controller\\MainController::healthCheck'], null, ['GET' => 0], null, false, false, null]],
             '/calc' => [[['_route' => 'calculate', '_controller' => 'App\\Controller\\MainController::calculate'], null, ['POST' => 0], null, false, false, null]],
+            '/montyhall' => [[['_route' => 'montyHall', '_controller' => 'App\\Controller\\MainController::montyHall'], null, ['GET' => 0], null, false, false, null]],
         ];
     }
 }
