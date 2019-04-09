@@ -31,31 +31,23 @@ class Validator
         return true;
     }
 
-    private function amountBrackets(String $expression)
+    private function unnecessarySymbols(String $expression): bool
     {
-        preg_match_all($this->amountLeftBrackets, $expression, $leftBrackets);
-        preg_match_all($this->amountRightBrackets, $expression, $rightBrackets);
-
-        $amount = 0;
-        foreach ($expression as $item) {
-            if($item == '(') {
-                $amount++;
-            }
-
-        }
-        if(count($leftBrackets[0]) != count($rightBrackets[0])) {
+        preg_match($this->unnecessarySymbolsPattern, $expression, $base);
+        if(!empty($base)) {
 
             return false;
         }
 
         return true;
-
     }
 
-    private function unnecessarySymbols(String $expression): bool
+    public function amountBrackets(String $expression)
     {
-        preg_match($this->unnecessarySymbolsPattern, $expression, $base);
-        if(!empty($base)) {
+        preg_match_all($this->amountLeftBrackets, $expression, $leftBrackets);
+        preg_match_all($this->amountRightBrackets, $expression, $rightBrackets);
+
+        if(count($leftBrackets[0]) != count($rightBrackets[0])) {
 
             return false;
         }

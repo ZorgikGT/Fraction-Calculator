@@ -68,14 +68,17 @@
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
       <argument type="service" id="App\Calculator\Parser"/>
+      <argument type="service" id="App\Generators\RandomNumberGenerator"/>
       <call method="setContainer">
         <argument type="service" id=".service_locator.KTVqfp6.App\Controller\MainController"/>
       </call>
     </service>
+    <service id="App\Generators\RandomNumberGenerator" class="App\Generators\RandomNumberGenerator" autowire="true" autoconfigure="true"/>
     <service id="calc.calculator" class="App\Calculator\Calculator" autowire="true" autoconfigure="true"/>
     <service id="calc.parser" class="App\Calculator\Parser" autowire="true" autoconfigure="true">
       <argument type="service" id="App\Calculator\Calculator"/>
     </service>
+    <service id="generator.rng" class="App\Generators\RandomNumberGenerator" autowire="true" autoconfigure="true"/>
     <service id="controller_name_converter" class="Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser" public="false">
       <tag name="monolog.logger" channel="request"/>
       <argument type="service" id="kernel"/>
@@ -712,6 +715,7 @@
         <argument key="App\Calculator\Fraction" type="service" id="App\Calculator\Fraction" on-invalid="ignore_uninitialized"/>
         <argument key="App\Calculator\Parser" type="service" id="App\Calculator\Parser" on-invalid="ignore_uninitialized"/>
         <argument key="App\Calculator\Validator" type="service" id="App\Calculator\Validator" on-invalid="ignore_uninitialized"/>
+        <argument key="App\Generators\RandomNumberGenerator" type="service" id="App\Generators\RandomNumberGenerator" on-invalid="ignore_uninitialized"/>
         <argument key="Doctrine\Common\Annotations\Reader" type="service" id="annotations.cached_reader" on-invalid="ignore_uninitialized"/>
         <argument key="Psr\Cache\CacheItemPoolInterface" type="service" id="cache.app" on-invalid="ignore_uninitialized"/>
         <argument key="Psr\Container\ContainerInterface" type="service" id="service_container" on-invalid="ignore_uninitialized"/>
@@ -795,6 +799,7 @@
         <argument key="framework_extra_bundle.argument_name_convertor" type="service" id="framework_extra_bundle.argument_name_convertor" on-invalid="ignore_uninitialized"/>
         <argument key="framework_extra_bundle.date_time_param_converter" type="service" id="framework_extra_bundle.date_time_param_converter" on-invalid="ignore_uninitialized"/>
         <argument key="framework_extra_bundle.event.is_granted" type="service" id="framework_extra_bundle.event.is_granted" on-invalid="ignore_uninitialized"/>
+        <argument key="generator.rng" type="service" id="generator.rng" on-invalid="ignore_uninitialized"/>
         <argument key="http_exception_listener" type="service" id="http_exception_listener" on-invalid="ignore_uninitialized"/>
         <argument key="locale_listener" type="service" id="locale_listener" on-invalid="ignore_uninitialized"/>
         <argument key="logger" type="service" id="logger" on-invalid="ignore_uninitialized"/>
