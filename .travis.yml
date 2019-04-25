@@ -11,7 +11,14 @@ services:
 before_install:
   - docker pull zorgik/provectus-webserver
 
+addons:
+  sonarcloud:
+    organization: "zorgikgt-github"
+    token:
+      secure: HWIQym5WqDkw4sZlTovBvZ8a/Ykt8cis3oPgmewmFmXsCj49tGbNyPXB0jFWvK78IoVqEVyYdMY/jvVm87ZYjUVT2rf4gYA3sl2np++gX6bMsdoYBmUl/ds5JYTNHQQgBBkHAbFga1RFQM3x1CovjL3KO08IbU3pjYbt8Gi3CmAFu2vs5ZKtREnTMe/iNNa9si3+7wIW7C/dXxRCEoIR9llV441BFTZvf53OcCu7azQUahkrmlL2puxbvm90ThPfiOzyXuz53mgqHrmJotmjtOJLzmTbFIqb0aOI7VDGVQVlPy/y5JLqQXeDIvVQo7qLdM+7Ai1DId0vB2KhzbUuuuXfeaEGue0tRyBX0F2UKZn+YMvZROT73sCbXMF/ckW6EDoAixtS6u+SRfFjSXzRA0hmDOjPFhAGEysKrKmOM3qqcRZxvEgNDwQRCvRnLO0bHJiqH7DR+Z9MwY1Y92WBd9MaAlMHwsLtwXI89Hkx4InCrSQXPxFbUwxXIroLwL7JVtRKe2HbIsPamhOlx2AOj7ZzxFjuEgkRsfAY5OlFjONkVPNtQRjJGFULuYOoyxgN3hqsvrCeKqZ7vQz8ER1cQuXshx9ImNRpmyIiefXeZObF+LcZEhk+obSSYjZjN3NobANIc8fFQ0t0HQ/XH0AX6pi9Ye4JX7EjcHJ3ERdkdek=
+
 install:
+  - gem install travis
   - docker run -d -p 8080:80 zorgik/provectus-webserver
   - docker run zorgik/provectus-webserver composer install
   - docker run zorgik/provectus-webserver vendor/bin/phpunit
