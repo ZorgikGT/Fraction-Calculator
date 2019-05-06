@@ -9,8 +9,6 @@ RUN curl -sS https://getcomposer.org/installer | php -- --filename=composer --in
 WORKDIR "/application/"
 COPY . ./
 
-RUN composer install --ignore-platform-reqs
-
 EXPOSE 80
 
 CMD ["php", "-S", "0.0.0.0:80", "-t", "./public"]
