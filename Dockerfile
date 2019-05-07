@@ -9,6 +9,6 @@ RUN curl -sS https://getcomposer.org/installer | php -- --filename=composer --in
 WORKDIR "/application/"
 COPY . ./
 
-EXPOSE 80
+EXPOSE 8080
 
-CMD ["php", "-S", "0.0.0.0:80", "-t", "./public"]
+CMD ["php", "-S", "0.0.0.0:8080", "-t", "./public"]
