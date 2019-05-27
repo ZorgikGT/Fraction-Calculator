@@ -48,10 +48,10 @@ class MainController extends AbstractController
         $data = json_decode($json, true);
 
         if(!is_array($data)) {
-            return new JsonResponse(["message:" => "syntax error"], JsonResponse::HTTP_BAD_REQUEST);
+            return new JsonResponse(["message:" => "Bad Request"], JsonResponse::HTTP_BAD_REQUEST);
         }
         if(!isset($data["equation"])) {
-            return new JsonResponse(["message:" => "not exist"], JsonResponse::HTTP_BAD_REQUEST);
+            return new JsonResponse(["message:" => "Bad Request"], JsonResponse::HTTP_BAD_REQUEST);
         }
 
         $result = $this->parser->main($data["equation"]);
