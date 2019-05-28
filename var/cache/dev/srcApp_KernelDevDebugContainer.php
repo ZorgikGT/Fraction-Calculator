@@ -16,6 +16,6 @@ if (!\class_exists(srcApp_KernelDevDebugContainer::class, false)) {
 
 return new \ContainerLluxBf4\srcApp_KernelDevDebugContainer([
     'container.build_hash' => 'LluxBf4',
-    'container.build_id' => '5cb7e4c9',
-    'container.build_time' => 1557145440,
+    'container.build_id' => 'dfc5cb6b',
+    'container.build_time' => 1559048630,
 ], __DIR__.\DIRECTORY_SEPARATOR.'ContainerLluxBf4');
